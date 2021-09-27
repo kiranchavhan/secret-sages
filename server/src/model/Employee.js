@@ -37,7 +37,7 @@ const Employee = new Schema(
       type: String,
       default: null,
     },
-    employee_department: {
+    emp_department: {
       type: String,
       default: null,
     },
