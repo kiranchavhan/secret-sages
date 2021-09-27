@@ -12,11 +12,14 @@ const {
   getEmployeeLocationById,
   getEmployeeLocation,
   updateEmployeeLocationStatusById,
+} = require("../controller/employeeController");
+
+const {
   getEmployeeFilter,
   fetchUniqueStates,
   fetchUniqueCity,
   fetchUniqueDepartment,
-} = require("../controller/employeeController");
+} = require("../controller/employeeFilters");
 
 const {
   getFavarioteLocation,
