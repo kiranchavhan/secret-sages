@@ -1,17 +1,34 @@
-const express = require('express');
+const express = require("express");
 
 const {
-    insertEmployee,
-    getEmployeeById,
-    getEmployee
-  } = require('../controller/employeeController');
+  insertManyEmployee,
+  insertOneEmployee,
+  getEmployeeById,
+  getEmployee,
+  insertEmpLeaves,
+  getEmployeeLeaves,
+  updateEmployeeLeavesStatusById,
+  insertEmpLocation,
+  getEmployeeLocationById,
+  getEmployeeLocation,
+  updateEmployeeLocationStatusById,
+} = require("../controller/employeeController");
 const Router = express.Router();
 
 // Post requests
-Router.post('/employee', insertEmployee);
-Router.get('/employee', getEmployee);
+Router.post("/employees", insertManyEmployee);
+Router.post("/employee", insertOneEmployee);
+Router.post("/employeeLeaves", insertEmpLeaves);
+Router.post("/employeeLocation", insertEmpLocation);
 
 // Get request
-Router.get('/employee/:id',getEmployeeById);
+Router.get("/employee/:id", getEmployeeById);
+Router.get("/employee", getEmployee);
+Router.get("/employeeLeaves", getEmployeeLeaves);
+Router.get("/employeeLocation", getEmployeeLocation);
+Router.get("/employeeLocation/:id", getEmployeeLocationById);
+// Put request
+Router.put("/employeeLeaves", updateEmployeeLeavesStatusById);
+Router.put("/employeeLocation/:id", updateEmployeeLocationStatusById);
 
 module.exports = Router;
