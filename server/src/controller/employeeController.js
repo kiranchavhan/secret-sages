@@ -1,16 +1,14 @@
-const {
-  Employee,
-} = require("../model");
+const { Employee, EmployeeLeaves, EmployeeLocation } = require("../model");
 
 const { SUCCESS, FAILED } = require("../constant/CommonConstants");
 
-exports.insertEmployee = async (req, res) => {
+exports.insertEmployee = (req, res) => {
   const { data } = req.body;
 
-  let empData = [];
+  const empData = [];
 
   data &&
-    data.map((emp, index) => {
+    data.map((emp) => {
       empData.push({
         emp_id: emp.id,
         first_name: emp.first_name,
@@ -41,6 +39,26 @@ exports.insertEmployee = async (req, res) => {
 
 exports.getEmployee = (req, res) => {
   Employee.find()
+    .then((result) => {
+      res.status(200).json({
+        result,
+        message: SUCCESS,
+      });
+    })
+    .catch((err) => {
+      if (err) {
+        console.log(err);
+        res.json({
+          message: FAILED,
+        });
+      }
+    });
+};
+
+exports.getEmployeeById = (req, res) => {
+  const { id } = req.params;
+
+  Employee.find({ emp_id: id })
     .then((result) => {
       res.status(200).json({
         result,

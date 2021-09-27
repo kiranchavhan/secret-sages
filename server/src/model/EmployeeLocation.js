@@ -8,14 +8,14 @@ const EmployeeLocation = new Schema(
       type: Boolean,
       default: true,
     },
-    EmployeeId: {
+    emp_id: {
       type: Number,
     },
-    Longitude: {
+    longitude: {
       type: String,
       default: "28.7041° N",
     },
-    Latitude: {
+    latitude: {
       type: String,
       default: "77.1025° E",
     },
