@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("./config");
-
+const { EmpRoute } = require('./routes');
 const app = express();
 
 // Handling cors
@@ -16,6 +16,7 @@ app.use((req, res, next) => {
 });
 
 app.use(express.json());
+app.use('/api', EmpRoute);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Xethon 2021 Server");
