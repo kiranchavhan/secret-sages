@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { Grid } from "@material-ui/core";
+import Layout from "@layout/Layout";
 
 import {
   Modal,
@@ -35,7 +36,7 @@ const SampleScene = () => {
   };
 
   return (
-    <>
+    <Layout>
       Sample Scence
       <Modal open={false}>
         <p>Modal</p>
@@ -65,7 +66,7 @@ const SampleScene = () => {
         <Avatar name="Srijan Singh" />
         <Button>Click</Button>
       </Grid>
-    </>
+    </Layout>
   );
 };
 
