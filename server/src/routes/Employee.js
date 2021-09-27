@@ -13,6 +13,15 @@ const {
   getEmployeeLocation,
   updateEmployeeLocationStatusById,
 } = require("../controller/employeeController");
+
+
+
+const {
+  getFavarioteLocation,
+  getFavarioteDepartmentLocation
+} = require("../controller/employeeFilters");
+
+
 const Router = express.Router();
 
 // Post requests
@@ -27,6 +36,10 @@ Router.get("/employee", getEmployee);
 Router.get("/employeeLeaves", getEmployeeLeaves);
 Router.get("/employeeLocation", getEmployeeLocation);
 Router.get("/employeeLocation/:id", getEmployeeLocationById);
+Router.get("/getfav", getFavarioteLocation);
+Router.get("/getfavdep", getFavarioteDepartmentLocation);
+
+
 // Put request
 Router.put("/employeeLeaves", updateEmployeeLeavesStatusById);
 Router.put("/employeeLocation/:id", updateEmployeeLocationStatusById);

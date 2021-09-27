@@ -89,8 +89,8 @@ const { idGenerator } = require("../utils/EmployeeIdGenerator");
       });
   };
 
-  exports.getEmployee = (req, res) => {
-    Employee.find()
+  exports.getEmployee = async(req, res) => {
+    var arr=await Employee.find()
       .then((result) => {
         res.status(200).json({
           result,
@@ -105,6 +105,7 @@ const { idGenerator } = require("../utils/EmployeeIdGenerator");
           });
         }
       });
+      return arr;
   };
 
   exports.getEmployeeById = (req, res) => {
