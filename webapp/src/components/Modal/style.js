@@ -1,26 +1,28 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((common) => {
+const useStyles = makeStyles(({ common }) => {
   const { greyLight, white } = common;
 
   return {
     modal: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       zIndex: 10,
     },
     header: {
-      padding: '1.6rem',
+      padding: "1.6rem",
       borderBottom: `0.1rem solid ${greyLight}`,
+      background: "white",
     },
     footer: {
-      padding: '1.6rem',
+      padding: "1.6rem",
       borderTop: `0.1rem solid ${greyLight}`,
+      background: "white",
     },
     paper: {
-      background: white,
-      borderRadius: '0.4rem',
+      background: "white",
+      borderRadius: "0.4rem",
     },
   };
 });

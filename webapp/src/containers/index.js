@@ -1,3 +1,4 @@
-import AuthContainer from "./AuthContainer";
+import AuthContainer from './AuthContainer';
+import { AdminCount, AdminMap } from './AdminContainer';
 
-export { AuthContainer };
+export { AuthContainer, AdminCount, AdminMap };

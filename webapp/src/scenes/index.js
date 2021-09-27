@@ -1,3 +1,4 @@
-import AuthScene from './AuthScene';
+import AuthScene from "./AuthScene";
+import { EmployeeScene, AdminDashboardScene } from "./Admin";
 
-export { AuthScene };
+export { AuthScene, EmployeeScene, AdminDashboardScene };
