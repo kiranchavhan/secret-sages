@@ -4,7 +4,7 @@
   "description": "Xethon 2021 hackathon backend server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon src/index.js"
   },
   "author": "Srijan Singh",
   "license": "ISC",
@@ -16,5 +16,8 @@
     "jsonwebtoken": "^8.5.1",
     "module-alias": "^2.2.2",
     "mongoose": "^6.0.7"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
   }
 }
