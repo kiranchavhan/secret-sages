@@ -17,6 +17,12 @@ const {
   fetchUniqueCity,
   fetchUniqueDepartment,
 } = require("../controller/employeeController");
+
+const {
+  getFavarioteLocation,
+  getFavarioteDepartmentLocation,
+} = require("../controller/employeeFilters");
+
 const Router = express.Router();
 
 // Post requests
@@ -35,6 +41,9 @@ Router.get("/employeeFilters", getEmployeeFilter);
 Router.get("/fetchUniquestates", fetchUniqueStates);
 Router.get("/fetchUniqueCity", fetchUniqueCity);
 Router.get("/fetchUniqueDepartment", fetchUniqueDepartment);
+Router.get("/getfav", getFavarioteLocation);
+Router.get("/getfavdep", getFavarioteDepartmentLocation);
+
 // Put request
 Router.put("/employeeLeaves", updateEmployeeLeavesStatusById);
 Router.put("/employeeLocation/:id", updateEmployeeLocationStatusById);
