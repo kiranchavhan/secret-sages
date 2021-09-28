@@ -232,30 +232,59 @@ const promisify = require('util').promisify;
 	exports.insertEmpLocation = (req, res) => {
 		const { emp_id, longitude, latitude, is_current_location, is_loggedin } =
 			req.body;
-
-		const list = new EmployeeLocation({
-			emp_id: emp_id,
-			longitude: longitude,
-			latitude: latitude,
-			is_current_location: is_current_location,
-			is_loggedin: is_loggedin,
-		});
-
-		list
-			.save()
-			.then((result) => {
-				res.status(200).json({
-					result,
-					message: SUCCESS,
-				});
-			})
-			.catch((err) => {
-				if (err) {
-					res.json({
-						message: FAILED,
+		console.log(is_loggedin);
+		EmployeeLocation.find({ emp_id: emp_id }).then((result) => {
+			if (result) {
+				console.log(result[0].emp_id);
+				EmployeeLocation.update(
+					{ emp_id: parseInt(result[0].emp_id, 10) },
+					{
+						$set: {
+							latitude: latitude,
+							longitude: longitude,
+							is_loggedin: is_loggedin,
+						},
+					},
+				)
+					.then((result) => {
+						res.status(200).json({
+							result,
+							message: SUCCESS,
+						});
+					})
+					.catch((err) => {
+						if (err) {
+							res.json({
+								message: FAILED,
+							});
+						}
 					});
-				}
-			});
+			} else {
+				const list = new EmployeeLocation({
+					emp_id: emp_id,
+					longitude: longitude,
+					latitude: latitude,
+					is_current_location: is_current_location,
+					is_loggedin: is_loggedin,
+				});
+
+				list
+					.save()
+					.then((result) => {
+						res.status(200).json({
+							result,
+							message: SUCCESS,
+						});
+					})
+					.catch((err) => {
+						if (err) {
+							res.json({
+								message: FAILED,
+							});
+						}
+					});
+			}
+		});
 	};
 	exports.getEmployeeLocation = (req, res) => {
 		EmployeeLocation.find({
