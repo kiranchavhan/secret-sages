@@ -12,6 +12,7 @@ const {
   getEmployeeLocationById,
   getEmployeeLocation,
   updateEmployeeLocationStatusById,
+  getTotalCount,
 } = require("../controller/employeeController");
 
 const {
@@ -19,9 +20,6 @@ const {
   fetchUniqueStates,
   fetchUniqueCity,
   fetchUniqueDepartment,
-} = require("../controller/employeeFilters");
-
-const {
   getFavarioteLocation,
   getFavarioteDepartmentLocation,
 } = require("../controller/employeeFilters");
@@ -46,6 +44,7 @@ Router.get("/fetchUniqueCity", fetchUniqueCity);
 Router.get("/fetchUniqueDepartment", fetchUniqueDepartment);
 Router.get("/getfav", getFavarioteLocation);
 Router.get("/getfavdep", getFavarioteDepartmentLocation);
+Router.get("/getTotalCount", getTotalCount);
 
 // Put request
 Router.put("/employeeLeaves", updateEmployeeLeavesStatusById);

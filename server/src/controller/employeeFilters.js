@@ -66,11 +66,7 @@ exports.getFavarioteDepartmentLocation = (req, res) => {
 {
   exports.getEmployeeFilter = (req, res) => {
     const { address_state, address_city, emp_department } = req.body;
-    if (
-      address_state == null &&
-      address_city == null &&
-      emp_department == null
-    ) {
+    if (!address_state && !address_city && !emp_department) {
       Employee.find({})
         .then((result) => {
           res.status(200).json({
@@ -86,7 +82,7 @@ exports.getFavarioteDepartmentLocation = (req, res) => {
             });
           }
         });
-    } else if (address_state == null && address_city == null) {
+    } else if (!address_state && !address_city) {
       Employee.find({
         emp_department: emp_department,
       })
@@ -104,7 +100,7 @@ exports.getFavarioteDepartmentLocation = (req, res) => {
             });
           }
         });
-    } else if (address_state == null && emp_department == null) {
+    } else if (!address_state && !emp_department) {
       Employee.find({
         address_city: address_city,
       })
@@ -122,7 +118,7 @@ exports.getFavarioteDepartmentLocation = (req, res) => {
             });
           }
         });
-    } else if (address_city == null && emp_department == null) {
+    } else if (!address_city && !emp_department) {
       Employee.find({
         address_state: address_state,
       })
@@ -140,7 +136,7 @@ exports.getFavarioteDepartmentLocation = (req, res) => {
             });
           }
         });
-    } else if (address_city == null) {
+    } else if (!address_city) {
       Employee.find({
         emp_department: emp_department,
         address_state: address_state,
@@ -159,7 +155,7 @@ exports.getFavarioteDepartmentLocation = (req, res) => {
             });
           }
         });
-    } else if (address_state == null) {
+    } else if (!address_state) {
       Employee.find({
         emp_department: emp_department,
         address_city: address_city,
@@ -178,7 +174,7 @@ exports.getFavarioteDepartmentLocation = (req, res) => {
             });
           }
         });
-    } else if (emp_department == null) {
+    } else if (!emp_department) {
       Employee.find({
         address_state: address_state,
         address_city: address_city,
