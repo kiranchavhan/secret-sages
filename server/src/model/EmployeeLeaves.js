@@ -8,13 +8,9 @@ const EmployeeLeaves = new Schema(
       type: Number,
       required: true,
     },
-    remaining_leaves: {
-      type: Number,
-      required: true,
-    },
     is_recent_record: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     emp_leave_startDate: {
       type: String,

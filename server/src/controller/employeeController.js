@@ -135,7 +135,6 @@ const promisify = require('util').promisify;
 	exports.insertEmpLeaves = (req, res) => {
 		const {
 			emp_id,
-			remaining_leaves,
 			emp_leave_startDate,
 			emp_leave_endDate,
 			is_recent_record,
@@ -145,7 +144,6 @@ const promisify = require('util').promisify;
 
 		const list = new EmployeeLeaves({
 			emp_id: emp_id,
-			remaining_leaves: remaining_leaves,
 			emp_leave_startDate: emp_leave_startDate,
 			emp_leave_endDate: emp_leave_endDate,
 			is_recent_record: is_recent_record,
@@ -162,6 +160,7 @@ const promisify = require('util').promisify;
 				});
 			})
 			.catch((err) => {
+				console.log(err);
 				if (err) {
 					res.json({
 						message: FAILED,
@@ -169,8 +168,28 @@ const promisify = require('util').promisify;
 				}
 			});
 	};
+
 	exports.getEmployeeLeaves = (req, res) => {
-		EmployeeLeaves.find({ is_recent_record: true })
+		EmployeeLeaves.find()
+			.then((result) => {
+				res.status(200).json({
+					result,
+					message: SUCCESS,
+				});
+			})
+			.catch((err) => {
+				if (err) {
+					res.json({
+						message: FAILED,
+					});
+				}
+			});
+	};
+
+	exports.getEmployeeLeavesById = (req, res) => {
+		const { id } = req.params;
+		console.log(id);
+		EmployeeLeaves.find({ emp_id: id })
 			.then((result) => {
 				res.status(200).json({
 					result,
@@ -307,12 +326,13 @@ const promisify = require('util').promisify;
 			is_active: true,
 			is_trashed: false,
 		}).count();
-		//const totalDepCnt = await Employee.Distinct("emp_department").count();
+		// const totalDepCnt = await Employee.Distinct('emp_department').count();
 
 		res.json({
 			result: [
 				{ label: 'Total Employee', count: empTotalcnt },
 				{ label: 'Total Active', count: empActiveCnt },
+				{ label: 'Total Department', count: 18 },
 				//totalDepCnt: totalDepCnt,
 			],
 		});
