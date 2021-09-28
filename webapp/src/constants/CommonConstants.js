@@ -1,0 +1,9 @@
+export default {
+  DEFAULT_SIZE: 40,
+  DEFAULT_THICKNESS: 3.6,
+  BUTTON: {
+    SMALL_LOADER_SIZE: 15,
+    MEDIUM_LOADER_SIZE: 20,
+    LARGE_LOADER_SIZE: 30,
+  },
+};
