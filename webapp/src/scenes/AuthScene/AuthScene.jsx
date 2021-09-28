@@ -1,13 +1,13 @@
 import React from 'react';
 import { AuthContainer } from '@containers';
 
-const AuthScene = () => {
-  console.log('scene');
-  return (
-    <div>
-      <AuthContainer />
-    </div>
-  );
+const AuthScene = (props) => {
+	const { isLoading, handleForm } = props;
+	return (
+		<div>
+			<AuthContainer isLoading={isLoading} handleForm={handleForm} />
+		</div>
+	);
 };
 
 export default AuthScene;

@@ -5,30 +5,25 @@ import Logo from '@assets/images/xethon_logo.svg';
 import { SnackbarLoader } from '@components';
 import useStyles from './style';
 import LoginForm from './LoginForm/LoginForm';
+import axios from 'axios';
 
-const AuthContainer = () => {
-  const classes = useStyles();
-  const [isLoading, setIsLoading] = useState(false);
+const AuthContainer = (props) => {
+	const { isLoading, handleForm } = props;
+	const classes = useStyles();
 
-  const handleForm = (values, actions) => {
-    setIsLoading(true);
-    actions.setTouched({});
-    console.log(values);
-  };
-
-  return (
-    <>
-      <Paper classes={{ root: classes.root }} className={classes.paper}>
-        <div className={classes.left}>
-          <img src={Logo} alt='Xethon' />
-        </div>
-        <div className={classes.right}>
-          <LoginForm onSubmit={handleForm} isLoading={isLoading} />
-        </div>
-      </Paper>
-      <SnackbarLoader open={isLoading} />
-    </>
-  );
+	return (
+		<>
+			<Paper classes={{ root: classes.root }} className={classes.paper}>
+				<div className={classes.left}>
+					<img src={Logo} alt='Xethon' />
+				</div>
+				<div className={classes.right}>
+					<LoginForm onSubmit={handleForm} isLoading={isLoading} />
+				</div>
+			</Paper>
+			<SnackbarLoader open={isLoading} />
+		</>
+	);
 };
 
 export default AuthContainer;

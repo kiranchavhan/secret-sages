@@ -4,18 +4,22 @@ import { Appbar, SideDrawer } from '@components';
 import useStyles from './style';
 
 const Layout = (props) => {
-  const { children } = props;
-  const classes = useStyles();
+	const { children, isSidebar, title } = props;
+	const classes = useStyles();
 
-  return (
-    <div className={classes.wrapper}>
-      <SideDrawer />
-      <div className={classes.main}>
-        <Appbar title='Admin Dashboard' />
-        {children}
-      </div>
-    </div>
-  );
+	return (
+		<div className={classes.wrapper}>
+			{isSidebar && <SideDrawer />}
+			<div className={classes.main}>
+				<Appbar isSidebar={isSidebar} title={title} />
+				{children}
+			</div>
+		</div>
+	);
+};
+Layout.defaultProps = {
+	isSidebar: true,
+	title: 'Admin Dashboard',
 };
 
 export default Layout;
