@@ -34,6 +34,7 @@ Router.post("/employees", insertManyEmployee);
 Router.post("/employee", insertOneEmployee);
 Router.post("/employeeLeaves", insertEmpLeaves);
 Router.post("/employeeLocation", insertEmpLocation);
+Router.post("/employeeFilters", getEmployeeFilter);
 
 // Get request
 Router.get("/employee/:id", getEmployeeById);
@@ -41,7 +42,6 @@ Router.get("/employee", getEmployee);
 Router.get("/employeeLeaves", getEmployeeLeaves);
 Router.get("/employeeLocation", getEmployeeLocation); //all active employee location
 Router.get("/employeeLocation/:id", getEmployeeLocationById);
-Router.get("/employeeFilters", getEmployeeFilter);
 Router.get("/fetchUniquestates", fetchUniqueStates);
 Router.get("/fetchUniqueCity", fetchUniqueCity);
 Router.get("/fetchUniqueDepartment", fetchUniqueDepartment);
