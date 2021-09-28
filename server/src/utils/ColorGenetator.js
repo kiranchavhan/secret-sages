@@ -1,0 +1,3 @@
+exports.generateColor = (req, res) => {
+    
+  };
