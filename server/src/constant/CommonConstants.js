@@ -1,0 +1,4 @@
+module.exports = {
+  SUCCESS: 'RESULT_SUCCESSFULL',
+  FAILED: 'RESULT_FAILED',
+};
