@@ -230,13 +230,15 @@ const promisify = require('util').promisify;
 //# employee location
 {
 	exports.insertEmpLocation = (req, res) => {
-		const { emp_id, longitude, latitude, is_current_location } = req.body;
+		const { emp_id, longitude, latitude, is_current_location, is_loggedin } =
+			req.body;
 
 		const list = new EmployeeLocation({
 			emp_id: emp_id,
-			Longitude: longitude,
-			Latitude: latitude,
+			longitude: longitude,
+			latitude: latitude,
 			is_current_location: is_current_location,
+			is_loggedin: is_loggedin,
 		});
 
 		list
@@ -338,3 +340,18 @@ const promisify = require('util').promisify;
 		});
 	};
 }
+
+exports.loginUser = (req, res) => {
+	const { email, first_name } = req.body;
+
+	Employee.find({ emp_email: email })
+		.then((result) => {
+			if (result.length < 1) {
+				throw new Error('Data not found');
+			}
+			res.json({ result: result[0] });
+		})
+		.catch((err) => {
+			res.json({ message: FAILED });
+		});
+};

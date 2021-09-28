@@ -14,6 +14,7 @@ const {
 	updateEmployeeLocationStatusById,
 	getTotalCount,
 	getEmployeeLeavesById,
+	loginUser,
 } = require('../controller/employeeController');
 
 const {
@@ -35,6 +36,7 @@ Router.post('/employee', insertOneEmployee);
 Router.post('/employeeLeaves', insertEmpLeaves);
 Router.post('/employeeLocation', insertEmpLocation);
 Router.post('/employeeFilters', getEmployeeFilter);
+Router.post('/login', loginUser);
 
 // Get request
 Router.get('/employee/:id', getEmployeeById);
