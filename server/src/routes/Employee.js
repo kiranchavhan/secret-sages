@@ -18,7 +18,8 @@ const {
 
 const {
   getFavarioteLocation,
-  getFavarioteDepartmentLocation
+  getFavarioteDepartmentLocation,
+  getFavariotState
 } = require("../controller/employeeFilters");
 
 
@@ -38,6 +39,7 @@ Router.get("/employeeLocation", getEmployeeLocation);
 Router.get("/employeeLocation/:id", getEmployeeLocationById);
 Router.get("/getfav", getFavarioteLocation);
 Router.get("/getfavdep", getFavarioteDepartmentLocation);
+Router.get("/getfavstate", getFavariotState);
 
 
 // Put request
