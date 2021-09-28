@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
     borderBottom: "0.1rem solid #d6d6d6",
   },
   table: {
-    maxHeight: "80vh",
+    maxHeight: "60vh",
     marginTop: "1rem",
     padding: "1.5rem",
     overflowY: "scroll",

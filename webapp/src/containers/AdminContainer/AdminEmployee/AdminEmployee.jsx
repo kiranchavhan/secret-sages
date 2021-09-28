@@ -2,23 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "date-format-parse";
 import { Paper, TableContainer, Typography } from "@material-ui/core";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 
-import {
-  Button,
-  SnackbarLoader,
-  Modal,
-  Tab,
-  TabPanel,
-  Loader,
-} from "@components";
+import { SnackbarLoader, Modal, Tab, TabPanel, Loader } from "@components";
 import { BASE_URL } from "@constants";
 import useStyles from "./style";
 import AllEmployee from "./AllEmployees/AllEmployee";
+import ApplyFilters from "./AllEmployees/ApplyFilters";
 
 const AdminEmployee = () => {
   const [employee, setEmployee] = useState([]);
@@ -27,6 +20,11 @@ const AdminEmployee = () => {
   const [isViewModal, setIsViewModal] = useState(false);
   const [isModalLoading, setIsModalLoading] = useState(false);
   const [empData, setEmpData] = useState(null);
+  const [filterData, setFilterData] = useState({
+    state: "",
+    city: "",
+    dept: "",
+  });
   const classes = useStyles();
 
   const tabData = [
@@ -36,7 +34,7 @@ const AdminEmployee = () => {
   ];
 
   const fetchData = async () => {
-    axios.get(`${BASE_URL}employee`).then((result) => {
+    axios.get(`${BASE_URL}employeeFilters`, filterData).then((result) => {
       result.data.result?.map((data) =>
         setEmployee((prevState) => [...prevState, data])
       );
@@ -69,19 +67,37 @@ const AdminEmployee = () => {
 
   const handleCloseModal = () => setIsViewModal(false);
 
+  const handleApplyFilter = () => {
+    setEmployee([]);
+    fetchData();
+  };
+
   return (
-    <Paper elevation={1}>
-      <div className={classes.header}>
-        <Typography component="h2">Employee</Typography>
-      </div>
+    <>
+      <Paper style={{ width: "100%", margin: "3rem 0" }}>
+        <div className={classes.header}>
+          <Typography component="h2">Apply Filters</Typography>
+        </div>
+        <ApplyFilters
+          filterData={filterData}
+          setFilterData={setFilterData}
+          onClick={handleApplyFilter}
+        />
+      </Paper>
+
       {isLoading ? (
         <div className={classes.loader}>
           <Loader />
         </div>
       ) : (
-        <div className={classes.table}>
-          <AllEmployee employee={employee} onViewClick={handleView} />
-        </div>
+        <Paper elevation={1}>
+          <div className={classes.header}>
+            <Typography component="h2">Employee</Typography>
+          </div>
+          <div className={classes.table}>
+            <AllEmployee employee={employee} onViewClick={handleView} />
+          </div>
+        </Paper>
       )}
       <Modal open={isViewModal} onClose={handleCloseModal}>
         <Paper className={classes.modal}>
@@ -180,7 +196,7 @@ const AdminEmployee = () => {
         </Paper>
       </Modal>
       <SnackbarLoader open={isLoading} message="Fetching employee data..." />
-    </Paper>
+    </>
   );
 };
 
