@@ -6,57 +6,47 @@ const { idGenerator } = require("../utils/EmployeeIdGenerator");
 
 const { getEmployee } = require("./employeeController");
 
-exports.getFavarioteLocation =  (req, res) => {
- Employee.aggregate([
+exports.getFavarioteLocation = async(req, res) => {
+  const arr =await Employee.aggregate([
     { $unwind: "$address_city" },
     { $sortByCount: "$address_city" },
-  ]).then((result) => {
-    res.status(200).json({
-      result,
-      message: SUCCESS,
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-    res.json({
-      message: FAILED,
-    });
-  });
+  ])
+  var view = 0;
+  for (var i = 3; i < arr.length; i++) {
+    view = view + arr[i].count;
+  }
+  var result=[];
+  result.push(arr[0],arr[1],arr[2]);
+  result.push({_id:'Other',count:view});
+  res.json(result);
 };
-exports.getFavariotState = (req, res) => {
-  Employee.aggregate([
+exports.getFavariotState = async(req, res) => {
+ 
+  const arr = await Employee.aggregate([
     { $unwind: "$address_state" },
     { $sortByCount: "$address_state" },
   ])
-    .then((result) => {
-      res.status(200).json({
-        result,
-        message: SUCCESS,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.json({
-        message: FAILED,
-      });
-    });
-
+  var view = 0;
+  for (var i = 3; i < arr.length; i++) {
+    view = view + arr[i].count;
+  }
+  var result=[];
+  result.push(arr[0],arr[1],arr[2]);
+  result.push({_id:'Other',count:view});
+  res.json(result);
 };
 
-exports.getFavarioteDepartmentLocation =  (req, res) => {
-Employee.aggregate([
+exports.getFavarioteDepartmentLocation = async (req, res) => {
+  const arr = await Employee.aggregate([
     { $unwind: "$emp_department" },
     { $sortByCount: "$emp_department" },
-  ]).then((result) => {
-    res.status(200).json({
-      result,
-      message: SUCCESS,
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-    res.json({
-      message: FAILED,
-    });
-  });
+  ]);
+  var view = 0;
+  for (var i = 3; i < arr.length; i++) {
+    view = view + arr[i].count;
+  }
+  var result=[];
+  result.push(arr[0],arr[1],arr[2]);
+  result.push({_id:'Other',count:view});
+  res.json(result);
 };
