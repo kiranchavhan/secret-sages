@@ -299,6 +299,7 @@ const promisify = require("util").promisify;
       });
   };
 }
+<<<<<<< HEAD
 //# get total count of employee ,department,isActive
 {
   exports.getTotalCount = async (req, res) => {
@@ -317,3 +318,7 @@ const promisify = require("util").promisify;
     res.json(result);
   };
 }
+=======
+
+
+>>>>>>> 813a0e7b4a31897e69d69a8b15483041036b2f5a
