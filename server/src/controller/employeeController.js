@@ -4,6 +4,7 @@ const { SUCCESS, FAILED } = require("../constant/CommonConstants");
 
 const { idGenerator } = require("../utils/EmployeeIdGenerator");
 
+const promisify = require("util").promisify;
 //# employee
 {
   exports.insertManyEmployee = (req, res) => {
@@ -298,5 +299,26 @@ const { idGenerator } = require("../utils/EmployeeIdGenerator");
       });
   };
 }
+<<<<<<< HEAD
+//# get total count of employee ,department,isActive
+{
+  exports.getTotalCount = async (req, res) => {
+    const empTotalcnt = await Employee.find({ is_trashed: false }).count();
+    const empActiveCnt = await Employee.find({
+      is_active: true,
+      is_trashed: false,
+    }).count();
+    //const totalDepCnt = await Employee.Distinct("emp_department").count();
+    var result = [];
+    result.push({
+      empTotalcnt: empTotalcnt,
+      empActiveCnt: empActiveCnt,
+      //totalDepCnt: totalDepCnt,
+    });
+    res.json(result);
+  };
+}
+=======
 
 
+>>>>>>> 813a0e7b4a31897e69d69a8b15483041036b2f5a
