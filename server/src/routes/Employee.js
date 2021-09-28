@@ -24,7 +24,8 @@ const {
 const {
   getFavarioteLocation,
   getFavarioteDepartmentLocation,
-  getFavariotState
+  getFavariotState,
+  getGender
 } = require("../controller/employeeFilters");
 
 const Router = express.Router();
@@ -48,6 +49,8 @@ Router.get("/fetchUniqueDepartment", fetchUniqueDepartment);
 Router.get("/getfav", getFavarioteLocation);
 Router.get("/getfavdep", getFavarioteDepartmentLocation);
 Router.get("/getfavstate", getFavariotState);
+Router.get("/getgen", getGender);
+
 
 // Put request
 Router.put("/employeeLeaves", updateEmployeeLeavesStatusById);

@@ -73,6 +73,17 @@ exports.getFavarioteDepartmentLocation = async(req, res) => {
   res.json(result);
 };
 
+exports.getGender = async(req, res) => {
+  const arr = await Employee.aggregate([
+    { $unwind: "$emp_gender" },
+    { $sortByCount: "$emp_gender" },
+  ])
+ 
+  res.json(arr);
+};
+
+
+
 //# filter
 {
   exports.getEmployeeFilter = (req, res) => {
