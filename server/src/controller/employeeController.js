@@ -109,13 +109,15 @@ const promisify = require('util').promisify;
 		return arr;
 	};
 
-	exports.getEmployeeById = (req, res) => {
+	exports.getEmployeeById = async (req, res) => {
 		const { id } = req.params;
+
+		const location = await EmployeeLocation.find({ emp_id: id });
 
 		Employee.find({ emp_id: id, is_trashed: false })
 			.then((result) => {
 				res.status(200).json({
-					result,
+					result: result[0],
 					message: SUCCESS,
 				});
 			})

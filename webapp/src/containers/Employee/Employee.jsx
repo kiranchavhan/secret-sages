@@ -48,10 +48,13 @@ const Employee = () => {
 	};
 
 	useEffect(() => {
-		axios.get('http://localhost:8001/api/employeeLeaves/1').then((result) => {
-			console.log(result.data.result);
-			setLeaveData(result.data.result);
-		});
+		const empId = localStorage.getItem('empId');
+		axios
+			.get(`http://localhost:8001/api/employeeLeaves/${empId}`)
+			.then((result) => {
+				console.log(result.data.result);
+				setLeaveData(result.data.result);
+			});
 	}, []);
 
 	useEffect(() => {}, []);

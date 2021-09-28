@@ -55,7 +55,7 @@ const Appbar = (props) => {
 				</Typography>
 				<div>
 					<Button type='button' onClick={(event) => handleClick(event)}>
-						<Typography>Srijan Singh</Typography>
+						<Typography>{localStorage.getItem('name')}</Typography>
 						<Icon
 							icon={faCaretDown}
 							size='sm'

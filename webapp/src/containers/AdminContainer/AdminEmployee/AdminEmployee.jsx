@@ -51,8 +51,9 @@ const AdminEmployee = () => {
 
 	const fetchEmployeeData = (empId) => {
 		axios.get(`${BASE_URL}employee/${empId}`).then((result) => {
-			setEmpData(result.data.result[0]);
+			setEmpData(result.data.result);
 			setIsModalLoading(false);
+			console.log(result.data.result)
 		});
 	};
 
